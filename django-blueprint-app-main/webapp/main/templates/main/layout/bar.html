@@ -1,0 +1,46 @@
+{% load static %}
+{% load sidebar_links %}
+
+{% get_links as links %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3 fixed-top">
+  <a href="/main/static" class="navbar-brand d-flex align-items-center gap-2">
+    <span class="fs-4">firma</span>
+  </a>
+  
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ms-auto">
+      {% for link in links %}
+        <li class="nav-item">
+          <a href="{{ link.href }}" class="nav-link {% if request.path == link.href %}active{% endif %}">
+            <i class="fa-solid {{ link.icon }}"></i>&nbsp;<span>{{ link.name }}</span>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+    
+    <div class="dropdown ms-3">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+        <strong>Bootstrap User</strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+        <li><a class="dropdown-item" href="#">New project...</a></li>
+        <li><a class="dropdown-item" href="#">Settings</a></li>
+        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Sign out</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<style>
+  body {
+    padding-top: 56px;
+  }
+</style>
