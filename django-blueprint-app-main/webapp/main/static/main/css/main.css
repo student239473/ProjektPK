@@ -1,66 +1,92 @@
-/*body {*/
-/*    background: #2c2c2c;*/
-/*}*/
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 40px; /* Przestrzeń między sekcjami */
+}
 
-/*aside {*/
-/*    float: left;*/
-/*    background: #181818;*/
-/*    width: 20%;*/
-/*    padding: 2.5%;*/
-/*    height: 100vh;*/
-/*    color: #fff;*/
-/*    border-right: 5px solid #4d4d4d*/
-/*}*/
+/* Sekcja formularza po lewej stronie */
+.left-section {
+    flex: 1;
+    padding-right: 20px;
+}
 
-/*aside img {*/
-/*    width: 80px;*/
-/*    float: left;*/
+/* Sekcja aut po prawej stronie */
+.right-section {
+    flex: 2;
+    display: flex;
+    flex-wrap: wrap; /* Zapewnia łamanie do nowych wierszy */
+    gap: 20px;
+    justify-content: space-between; /* Rozmieszczenie w dwóch kolumnach */
+}
 
-/*}*/
+/* Karty samochodów */
+.car-card {
+    width: calc(50% - 20px); /* Ustawiamy szerokość kart na 50%, co daje dwie kolumny */
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+    box-sizing: border-box;
+}
 
-/*aside .logo {*/
-/*    font-size: 40px;*/
-/*    margin-left: 10px;*/
-/*    font-weight: bold;*/
-/*    position: relative;*/
-/*    top: -5px;*/
-/*}*/
+.car-card img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+}
 
-/*aside h3 {*/
-/*    margin-top: 50px;*/
-/*    font-size: 28px;*/
-/*}*/
+.car-card h3 {
+    margin: 10px 0;
+}
 
-/*aside ul {*/
-/*    list-style: none;*/
-/*}*/
+.car-card p {
+    font-size: 1.1em;
+}
 
-/*aside ul li {*/
-/*    color: #fff;*/
-/*    display: block;*/
-/*    margin-top: 20px;*/
-/*    transition: transform .6s ease;*/
-/*}*/
+.car-card:hover {
+    transform: translateY(-5px); /* Efekt hover */
+}
 
-/*aside ul li:hover, aside ul a:hover {*/
-/*    color: #eb5959;*/
-/*    text-decoration: none;*/
-/*    transform: scale(1.05);*/
-/*}*/
+/* Dostosowanie na mniejszych ekranach */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+        align-items: center;
+    }
 
-/*main .features {*/
-/*    float: left;*/
-/*    color: #fff; /*
-/*    margin-top: 100px;*/
-/*    text-align: center;*/
-/*    width: 75%;*/
-/*}*/
+    .right-section {
+        justify-content: center; /* Wyśrodkowanie kart */
+    }
 
-/*main .features h1 {*/
-/*    font-size: 50px;*/
-/*}*/
+    .car-card {
+        width: 100%; /* Na mniejszych ekranach karty będą w jednej kolumnie */
+    }
+}
 
-/*main .features p {*/
-/*    max-width: 400px;*/
-/*    margin: 20px auto;*/
-/*}*/
+/* Stylizacja przycisku i stopki */
+.centered-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    margin-top: 40px;
+}
+.hero {
+    text-align: center;
+    padding: 50px 20px; /* Dodajemy trochę paddingu, aby zrobić przestrzeń wokół */
+    margin-top: 80px; /* Dodajemy margines, aby przesunąć napis w dół */
+}
+
+.hero h1 {
+    font-size: 3em;
+    color: #333;
+}

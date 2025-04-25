@@ -1,79 +1,84 @@
 {% extends 'main/layout/layout.html' %}
-
-{% block title %}Homepage{% endblock %}
 {% load static %}
+
+{% block title %}Wielkie Promocje{% endblock %}
+
 {% block content %}
-<link rel="stylesheet" href="django-blueprint-app-main/webapp/main/static/main/css/main.css">
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
 
-    <h1 style="text-align: center;">Wielkie promocje</h1>
-    <div class="container" style="max-width: 80%; margin: auto; padding: 20px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
-        
-        <div class="reservation-form" style="background: white; padding: 20px; width: 45%; box-shadow: 0 0 10px rgba(0,0,0,0.1); text-align: center; margin-bottom: 80px;"> <!-- Zwiększono margin-bottom -->
-            <h2>Zarezerwuj Samochód</h2>
-            <form>
-                <label>Data wynajmu:</label><br>
-                <input type="date" style="width: 100%; padding: 10px; margin-bottom: 10px;"><br>
-                <label>Data zwrotu:</label><br>
-                <input type="date" style="width: 100%; padding: 10px; margin-bottom: 10px;"><br>
-                <label>Wybierz samochód:</label><br>
-                <select style="width: 100%; padding: 10px; margin-bottom: 10px;">
-                    <option>BMW X5</option>
-                    <option>Audi A4</option>
-                    <option>Mercedes C-Class</option>
-                    <option>Volkswagen Golf</option>
-                    <option>Toyota Corolla</option>
-                    <option>Ford Focus</option>
-                </select><br>
-                <button type="submit" style="background: #333; color: white; padding: 10px 20px; border: none; cursor: pointer;">Zarezerwuj</button>
-            </form>
-        
-        <div class="recommended-cars" style="width: 50%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px;">
-            
-            <div class="car" style="background: white; padding: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-                <img src="{% static 'main/img/bmw.jpeg' %}" alt="BMW X5" style="width: 100%; height: auto;">
-                <h3>BMW X5</h3>
-                <p>300zł/dzień</p>
-            </div>
-            <div class="car" style="background: white; padding: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-                <img src="{% static 'main/img/audi.jpeg' %}" alt="Audi A4" style="width: 100%; height: auto;">
-                <h3>Audi A4</h3>
-                <p>250zł/dzień</p>
-            </div>
+<div class="hero">
+    <h1>Wielkie promocje</h1>
+</div>
 
-            
-            <div class="car" style="background: white; padding: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-                <img src="{% static 'main/img/mercedes.jpeg' %}" alt="Mercedes C-Class" style="width: 100%; height: auto;">
-                <h3>Mercedes C-Class</h3>
-                <p>280zł/dzień</p>
-            </div>
-            <div class="car" style="background: white; padding: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-                <img src="{% static 'main/img/golf.jpeg' %}" alt="Volkswagen Golf" style="width: 100%; height: auto;">
-                <h3>Volkswagen Golf</h3>
-                <p>220zł/dzień</p>
-            </div>
+<div class="main-content">
+    <!-- Sekcja po lewej stronie (formularz) -->
+    <div class="left-section">
+        <h2>Zarezerwuj Samochód</h2>
+        <!-- Formularz do rezerwacji samochodu -->
+        <form method="POST" action="{% url 'reservation' %}">
+            {% csrf_token %}
+            <label>Data wynajmu:</label>
+            <input type="date" name="rental_date" class="form-input" style="width: 100%;" required>
 
-            
-            <div class="car" style="background: white; padding: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-                <img src="{% static 'main/img/toyota.jpeg' %}" alt="Toyota Corolla" style="width: 100%; height: auto;">
-                <h3>Toyota Corolla</h3>
-                <p>200zł/dzień</p>
-            </div>
-            <div class="car" style="background: white; padding: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-                <img src="{% static 'main/img/ford.jpeg' %}" alt="Ford Focus" style="width: 100%; height: auto;">
-                <h3>Ford Focus</h3>
-                <p>210zł/dzień</p>
-            </div>
+            <label>Data zwrotu:</label>
+            <input type="date" name="return_date" class="form-input" style="width: 100%;" required>
+
+            <label>Wybierz samochód:</label>
+            <select name="car_choice" class="form-input" style="width: 100%;" required>
+                <option value="BMW X5">BMW X5</option>
+                <option value="Audi A4">Audi A4</option>
+                <option value="Mercedes C-Class">Mercedes C-Class</option>
+                <option value="Volkswagen Golf">Volkswagen Golf</option>
+                <option value="Toyota Corolla">Toyota Corolla</option>
+                <option value="Ford Focus">Ford Focus</option>
+            </select>
+
+            <button type="submit" class="form-button" style="width: 100%; background-color: #4CAF50; color: white;">Zarezerwuj</button>
+        </form>
+    </div>
+
+    <!-- Sekcja po prawej stronie (auta) -->
+    <div class="right-section">
+        <div class="car-card">
+            <img src="{% static 'main/img/bmw.jpeg' %}" alt="BMW X5">
+            <h3>BMW X5</h3>
+            <p>300zł/dzień</p>
+        </div>
+        <div class="car-card">
+            <img src="{% static 'main/img/audi.jpeg' %}" alt="Audi A4">
+            <h3>Audi A4</h3>
+            <p>250zł/dzień</p>
+        </div>
+        <div class="car-card">
+            <img src="{% static 'main/img/mercedes.jpeg' %}" alt="Mercedes C-Class">
+            <h3>Mercedes C-Class</h3>
+            <p>280zł/dzień</p>
+        </div>
+        <div class="car-card">
+            <img src="{% static 'main/img/golf.jpeg' %}" alt="Volkswagen Golf">
+            <h3>Volkswagen Golf</h3>
+            <p>220zł/dzień</p>
+        </div>
+        <div class="car-card">
+            <img src="{% static 'main/img/toyota.jpeg' %}" alt="Toyota Corolla">
+            <h3>Toyota Corolla</h3>
+            <p>200zł/dzień</p>
+        </div>
+        <div class="car-card">
+            <img src="{% static 'main/img/ford.jpeg' %}" alt="Ford Focus">
+            <h3>Ford Focus</h3>
+            <p>210zł/dzień</p>
         </div>
     </div>
+</div>
 
-    
-    <div style="text-align: center; margin-top: 20px;">
-        <button class="btn btn-warning">Go to about us page</button>
-    </div>
+<div class="centered-button">
+    <a href="{% url 'about' %}" class="btn btn-warning">Go to about us page</a>
+</div>
 
-    <footer style="background: #333; color: white; text-align: center; padding: 10px 0; position: relative; width: 100%; margin-top: 40px; width:100%">
-        <p>&copy; 2025 Wypożyczalnia Aut</p>
-    </footer>
+<footer class="footer">
+    <p>&copy; 2025 Wypożyczalnia Aut</p>
+</footer>
 
-    {% include 'main/test.html' %}
+{% include 'main/test.html' %}
 {% endblock %}

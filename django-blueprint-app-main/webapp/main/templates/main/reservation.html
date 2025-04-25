@@ -1,0 +1,20 @@
+<form method="POST" action="{% url 'reservation' %}">
+    {% csrf_token %}
+    <label>Data wynajmu:</label>
+    <input type="date" name="rental_date" class="form-input" style="width: 100%;" required>
+
+    <label>Data zwrotu:</label>
+    <input type="date" name="return_date" class="form-input" style="width: 100%;" required>
+
+    <label>Wybierz samochód:</label>
+    <select name="car_choice" class="form-input" style="width: 100%;" required>
+        <option value="BMW X5">BMW X5</option>
+        <option value="Audi A4">Audi A4</option>
+        <option value="Mercedes C-Class">Mercedes C-Class</option>
+        <option value="Volkswagen Golf">Volkswagen Golf</option>
+        <option value="Toyota Corolla">Toyota Corolla</option>
+        <option value="Ford Focus">Ford Focus</option>
+    </select>
+
+    <button type="submit" class="form-button" style="width: 100%; background-color: #4CAF50; color: white;">Zarezerwuj</button>
+</form>

@@ -1,0 +1,33 @@
+{% extends 'main/layout/layout.html' %}
+{% load static %}
+
+{% block title %}Potwierdzenie Rezerwacji{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+
+<div class="hero">
+    <h1>Twoja Rezerwacja Została Potwierdzona</h1>
+</div>
+
+<div class="confirmation-details">
+    <h2>Potwierdzenie Rezerwacji</h2>
+    <p><strong>Data wynajmu:</strong> {{ rental_date }}</p>
+    <p><strong>Data zwrotu:</strong> {{ return_date }}</p>
+    <p><strong>Wybrany samochód:</strong> {{ car_choice }}</p>
+    <p><strong>Całkowity koszt:</strong> {{ total_price }} zł</p>
+
+    <p>Twoja rezerwacja została zakończona pomyślnie. Dziękujemy za skorzystanie z naszej wypożyczalni!</p>
+
+    <div class="centered-button">
+        <a href="{% url 'index' %}" class="btn btn-success">Powrót do strony głównej</a>
+    </div>
+    
+</div>
+
+<footer class="footer">
+    <p>&copy; 2025 Wypożyczalnia Aut</p>
+</footer>
+
+{% include 'main/test.html' %}
+{% endblock %}
