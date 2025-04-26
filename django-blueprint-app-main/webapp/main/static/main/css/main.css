@@ -90,3 +90,24 @@
     font-size: 3em;
     color: #333;
 }
+
+/*forum */
+.right-section .post-card {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+.right-section .post-card:hover {
+    transform: translateY(-5px);
+}
+.post-card h3 {
+    margin: 10px 0;
+}
+.post-card p {
+    font-size: 1.1em;
+    color: #555;
+}
