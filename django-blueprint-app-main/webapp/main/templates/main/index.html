@@ -11,10 +11,8 @@
 </div>
 
 <div class="main-content">
-    <!-- Sekcja po lewej stronie (formularz) -->
     <div class="left-section">
         <h2>Zarezerwuj Samochód</h2>
-        <!-- Formularz do rezerwacji samochodu -->
         <form method="POST" action="{% url 'reservation' %}">
             {% csrf_token %}
             <label>Data wynajmu:</label>
@@ -37,7 +35,6 @@
         </form>
     </div>
 
-    <!-- Sekcja po prawej stronie (auta) -->
     <div class="right-section">
         <div class="car-card">
             <img src="{% static 'main/img/bmw.jpeg' %}" alt="BMW X5">

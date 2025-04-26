@@ -26,15 +26,12 @@ def reservation(request):
         return_date_str = request.POST.get('return_date')
         car_choice = request.POST.get('car_choice')
 
-        # Przekształcanie dat na obiekty datetime
         rental_date = datetime.strptime(rental_date_str, '%Y-%m-%d').date()
         return_date = datetime.strptime(return_date_str, '%Y-%m-%d').date()
 
-        # Sprawdzamy, czy data zwrotu jest późniejsza niż data wynajmu
         if return_date <= rental_date:
             return HttpResponse("Data zwrotu musi być późniejsza niż data wynajmu.", status=400)
 
-        # Ceny samochodów
         car_prices = {
             'BMW X5': 300,
             'Audi A4': 250,
@@ -44,12 +41,10 @@ def reservation(request):
             'Ford Focus': 210
         }
 
-        # Obliczanie liczby dni wynajmu
         rental_duration = (return_date - rental_date).days
         car_price_per_day = car_prices.get(car_choice, 0)
         total_price = car_price_per_day * rental_duration
 
-        # Przekierowanie na stronę potwierdzenia rezerwacji
         return render(request, 'main/confirmation.html', {
             'rental_date': rental_date_str,
             'return_date': return_date_str,
