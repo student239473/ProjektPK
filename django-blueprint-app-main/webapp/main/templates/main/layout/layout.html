@@ -21,14 +21,14 @@
     <link rel="stylesheet" href="{% static 'forum/css/forum.css' %}">
 </head>
 
-<body style="margin: 0; padding: 0; width: 100%; overflow-x: hidden;"> <!-- Upewnij się, że szerokość jest ustawiona na 100% -->
+<body style="margin: 0; padding: 0; width: 100%; overflow-x: hidden;">
 
     <!-- Nawigacja -->
     {% include 'main/layout/bar.html' %}
 
     <!-- Zawartość główna -->
     <main class="py-5">
-        <div class="container px-4"> <!-- Zmiana z container-fluid na container -->
+        <div class="container px-4">
             {% block content %}
             {% endblock %}
         </div>
