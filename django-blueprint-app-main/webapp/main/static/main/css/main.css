@@ -79,6 +79,7 @@
     background-color: #333;
     color: white;
     margin-top: 40px;
+
 }
 .hero {
     text-align: center;
@@ -110,4 +111,10 @@
 .post-card p {
     font-size: 1.1em;
     color: #555;
+}
+
+body > .content-wrapper {
+    flex: 1; /* To wypycha footer na dół  - nie działa*/
+    display: flex;
+    flex-direction: column;
 }
