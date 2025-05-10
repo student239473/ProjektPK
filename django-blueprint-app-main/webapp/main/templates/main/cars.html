@@ -1,32 +1,52 @@
 {% extends 'main/layout/layout.html' %}
+{% load static %}
 
-{% block title%}Cars{% endblock %}
+{% block title %}Cars{% endblock %}
 
-{% block content%}
-<link rel="stylesheet" href="django-blueprint-app-main/webapp/main/static/main/css/main.css">
+{% block content %}
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
 
-    <h1>Cars</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Car</th>
-                <th scope="col">Year</th>
-                <th scope="col">Color</th>
-                <th scope="col">Drive wheel</th>
-                <th scope="col">Price</th>
-            </tr>
-        </thead>
-        <tbody>
+<h1>Cars</h1>
+
+{% if user.is_staff %}
+    <!-- Formularz do dodawania samochodu, widoczny tylko dla administratorów -->
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Add Car</button>
+    </form>
+{% endif %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Car</th>
+            <th>Year</th>
+            <th>Color</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
         {% for car in cars %}
             <tr>
                 <td>{{ car.car }}</td>
                 <td>{{ car.year }}</td>
-{#                Ze znakiem | można dodawać filtry do wyświetlanych w szablonie danych. Np.: variable|lower #}
                 <td>{{ car.color|capfirst }}</td>
-                <td>{{ car.drive_wheel|upper }}</td>
                 <td>{{ car.price }}</td>
+                <td>
+                    {% if car.image %}
+                        <img src="{{ car.image.url }}" width="100" />
+                    {% else %}
+                        No image
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'delete_car' car.id %}" class="btn btn-danger">Delete</a>
+                </td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+    </tbody>
+</table>
 {% endblock %}

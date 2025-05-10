@@ -28,4 +28,4 @@ urlpatterns = [
     path('news/', include('news.urls')), 
     path('forum/', include('forum.urls')), #delegating authority to an internal application to forum.urls that is needed to be created
     path('contact/', views.contact, name='contact'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
