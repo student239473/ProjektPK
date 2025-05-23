@@ -1,31 +1,33 @@
 {% extends 'main/layout/layout.html' %}
 {% load static %}
 
-{% block title %}Cars{% endblock %}
+{% block title %}Auta{% endblock %}
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
 
-<h1>Cars</h1>
+<h1>Auta</h1>
 
 {% if user.is_staff %}
-    <!-- Formularz do dodawania samochodu, widoczny tylko dla administratorów -->
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Add Car</button>
+        <button type="submit" class="btn btn-primary">Dodaj auto</button>
     </form>
 {% endif %}
 
 <table class="table">
     <thead>
         <tr>
-            <th>Car</th>
-            <th>Year</th>
-            <th>Color</th>
-            <th>Price</th>
-            <th>Image</th>
-            <th>Actions</th>
+            <th>Auto</th>
+            <th>Rok</th>
+            <th>Kolor</th>
+            <th>Cena</th>
+            <th>Zdjęcie</th>
+            <th>Status</th>
+            {% if user.is_staff %}
+                <th>Akcje</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
@@ -43,8 +45,22 @@
                     {% endif %}
                 </td>
                 <td>
-                    <a href="{% url 'delete_car' car.id %}" class="btn btn-danger">Delete</a>
+                    {% if user.is_staff %}
+                        <form method="POST" action="{% url 'toggle_reservation' car.id %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" style="border: none; background: none;">
+                                <span class="status-indicator {% if car.is_reserved %}status-reserved{% else %}status-free{% endif %}"></span>
+                            </button>
+                        </form>
+                    {% else %}
+                        <span class="status-indicator {% if car.is_reserved %}status-reserved{% else %}status-free{% endif %}"></span>
+                    {% endif %}
                 </td>
+                {% if user.is_staff %}
+                    <td>
+                        <a href="{% url 'delete_car' car.id %}" class="btn btn-danger">Usuń</a>
+                    </td>
+                {% endif %}
             </tr>
         {% endfor %}
     </tbody>

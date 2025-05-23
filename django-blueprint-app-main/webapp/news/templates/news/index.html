@@ -3,23 +3,22 @@
 {% block title%}Webpage news{% endblock %}
 
 {% block content%}
-    <h1>News</h1>
-    <div class="d-flex flex-column gap-4">
-    {% if news %}
+    <h1>Aktualności</h1>
 
-        {% for article in news %}
-
-            <div>
-            <h3><a href="/news/{{ article.id }}">{{ article.title }}</a></h3>
-            <p>{{ article.excerpt }}</p>
-            </div>
-
-        {% endfor %}
-
-    {% else %}
-
-        <p>No news for now. Come back later!</p>
-
+    {% if user.is_staff %}
+        <a href="{% url 'news_create' %}" class="btn btn-primary mb-3">+ Dodaj aktualność</a>
     {% endif %}
+
+    <div class="d-flex flex-column gap-4">
+        {% if news %}
+            {% for article in news %}
+                <div>
+                    <h3 class="article-title"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+                    <p>{{ article.excerpt }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Nie ma nowości, przyjdź później!</p>
+        {% endif %}
     </div>
 {% endblock %}

@@ -1,3 +1,8 @@
+body {
+    padding-top: 80px; /* Dostosuj do wysokości Twojego navbaru, np. 60-100px */
+}
+
+/* Główna sekcja */
 .main-content {
     display: flex;
     justify-content: space-between;
@@ -15,14 +20,14 @@
 .right-section {
     flex: 2;
     display: flex;
-    flex-wrap: wrap; /* Zapewnia łamanie do nowych wierszy */
+    flex-wrap: wrap;
     gap: 20px;
-    justify-content: space-between; /* Rozmieszczenie w dwóch kolumnach */
+    justify-content: space-between;
 }
 
 /* Karty samochodów */
 .car-card {
-    width: calc(50% - 20px); /* Ustawiamy szerokość kart na 50%, co daje dwie kolumny */
+    width: calc(50% - 20px);
     background-color: #f4f4f4;
     border: 1px solid #ddd;
     padding: 15px;
@@ -48,10 +53,46 @@
 }
 
 .car-card:hover {
-    transform: translateY(-5px); /* Efekt hover */
+    transform: translateY(-5px);
 }
 
-/* Dostosowanie na mniejszych ekranach */
+/* Forum: Karty postów */
+.right-section .post-card {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.right-section .post-card:hover {
+    transform: translateY(-5px);
+}
+
+.post-card h3 {
+    margin: 10px 0;
+}
+
+.post-card p {
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* Stylizacja hero */
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+    margin-top: 80px; /* zostawione w razie potrzeby dodatkowego odstępu */
+}
+
+.hero h1 {
+    font-size: 3em;
+    color: #333;
+}
+
+/* Responsywność */
 @media (max-width: 768px) {
     .main-content {
         flex-direction: column;
@@ -59,11 +100,11 @@
     }
 
     .right-section {
-        justify-content: center; /* Wyśrodkowanie kart */
+        justify-content: center;
     }
 
     .car-card {
-        width: 100%; /* Na mniejszych ekranach karty będą w jednej kolumnie */
+        width: 100%;
     }
 }
 
@@ -79,42 +120,38 @@
     background-color: #333;
     color: white;
     margin-top: 40px;
-
-}
-.hero {
-    text-align: center;
-    padding: 50px 20px; /* Dodajemy trochę paddingu, aby zrobić przestrzeń wokół */
-    margin-top: 80px; /* Dodajemy margines, aby przesunąć napis w dół */
 }
 
-.hero h1 {
-    font-size: 3em;
-    color: #333;
-}
-
-/*forum */
-.right-section .post-card {
-    background-color: #f4f4f4;
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 12px;
-    transition: transform 0.3s ease;
-    box-sizing: border-box;
-    margin-bottom: 20px;
-}
-.right-section .post-card:hover {
-    transform: translateY(-5px);
-}
-.post-card h3 {
-    margin: 10px 0;
-}
-.post-card p {
-    font-size: 1.1em;
-    color: #555;
-}
-
+/* Struktura layoutu */
 body > .content-wrapper {
-    flex: 1; /* To wypycha footer na dół  - nie działa*/
+    flex: 1;
     display: flex;
     flex-direction: column;
+}
+
+/* Wskaźniki statusu */
+.status-indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-free {
+    background-color: green;
+}
+
+.status-reserved {
+    background-color: red;
+}
+.article-title a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.article-title a:hover {
+    color: #007bff;  /* delikatny niebieski na hover */
+    text-decoration: underline;
 }

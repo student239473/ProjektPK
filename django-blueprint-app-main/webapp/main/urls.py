@@ -11,4 +11,5 @@ urlpatterns = [
     path('login/', views.login_user, name='login_user'),  # Ścieżka do logowania
     path('register/', views.register, name='register'),
     path('logout/', views.logout_user, name='logout_user'),
+    path('cars/toggle/<int:car_id>/', views.toggle_reservation, name='toggle_reservation'),
 ]

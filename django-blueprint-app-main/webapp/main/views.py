@@ -30,7 +30,7 @@ def cars(request):
         form = CarForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, "Car added successfully!")
+            messages.success(request, "Auto zostało dodane!")
             return redirect('cars')
     else:
         form = CarForm()
@@ -140,5 +140,11 @@ def logout_user(request):
 def delete_car(request, car_id):
     car = get_object_or_404(Car, id=car_id)
     car.delete()
-    messages.success(request, 'Car deleted successfully!')
+    messages.success(request, 'Auto usunięte!')
+    return redirect('cars')
+
+def toggle_reservation(request, car_id):
+    car = get_object_or_404(Car, id=car_id)
+    car.is_reserved = not car.is_reserved
+    car.save()
     return redirect('cars')

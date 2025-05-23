@@ -11,5 +11,9 @@ class ArticlesForm(ModelForm):
             'title': TextInput(attrs={'class': 'form-control', 'placeholder': 'Title'}),
             'excerpt': TextInput(attrs={'class': 'form-control', 'placeholder': 'Excerpt'}),
             'body': Textarea(attrs={'class': 'form-control', 'placeholder': 'Article body'}),
-            'published_at': DateTimeInput(attrs={'class': 'form-control', 'placeholder': 'Publication date'}),
+    'published_at': DateTimeInput(attrs={
+    'class': 'form-control',
+    'type': 'datetime-local',
+    'placeholder': 'Publication date and time'
+}),
         }

@@ -3,12 +3,14 @@
 
 {% get_links as links %}
 <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3 fixed-top">
   <a href="/main/static" class="navbar-brand d-flex align-items-center gap-2">
     <span class="fs-4">AutoRent express</span>
   </a>
 
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -25,27 +27,27 @@
 
     <div class="dropdown ms-3">
       {% if user.is_authenticated %}
-        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" 
+           data-bs-toggle="dropdown" aria-expanded="false">
           <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
           <strong>{{ user.username }}</strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-          <li><a class="dropdown-item" href="#">New project...</a></li>
-          <li><a class="dropdown-item" href="#">Settings</a></li>
-          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><a class="dropdown-item" href="#">Profil</a></li>
+          <li><a class="dropdown-item" href="#">Ustawienia</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="{% url 'logout_user' %}">Sign out</a></li>
+          <li><a class="dropdown-item" href="{% url 'logout_user' %}">Wyloguj się</a></li>
         </ul>
-{% else %}
-  <a class="btn btn-outline-light me-2" href="{% url 'login_user' %}">Login</a>
-  <a class="btn btn-light text-dark" href="{% url 'register' %}">Register</a>
-{% endif %}
+      {% else %}
+        <a class="btn btn-outline-light me-2" href="{% url 'login_user' %}">Zaloguj się</a>
+        <a class="btn btn-light text-dark" href="{% url 'register' %}">Zarejestruj</a>
+      {% endif %}
     </div>
   </div>
 </nav>
 
 <style>
   body {
-    padding-top: 56px;
+    padding-top: 90px;
   }
 </style>
