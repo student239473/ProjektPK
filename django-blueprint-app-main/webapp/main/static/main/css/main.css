@@ -278,3 +278,132 @@ html.dark-mode .dark-table tbody tr:hover {
     background-color: #575757 !important; 
     cursor: pointer;
 }
+.about-section {
+    padding: 4rem 1rem;
+    background-color: #f9fafb;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark-mode .about-section {
+    background-color: #1a1a1a !important;
+}
+
+.about-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #1f2937;
+}
+
+html.dark-mode .about-title {
+    color: #f3f4f6 !important;
+}
+
+.about-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #4b5563;
+    margin-bottom: 2rem;
+}
+
+html.dark-mode .about-subtitle {
+    color: #ccc !important;
+}
+
+.about-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #374151;
+}
+
+.about-text p {
+    margin-bottom: 1.2rem;
+}
+
+html.dark-mode .about-text {
+    color: #bbb !important;
+}
+
+.about-highlight {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+html.dark-mode .about-highlight {
+    color: #e0e0e0 !important;
+}
+.contact-section {
+    padding: 4rem 1rem;
+    background-color: #f9fafb;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark-mode .contact-section {
+    background-color: #1a1a1a !important;
+}
+
+.contact-container {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    color: #374151;
+}
+
+html.dark-mode .contact-container {
+    color: #ccc !important;
+}
+
+.contact-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #1f2937;
+}
+
+html.dark-mode .contact-title {
+    color: #f3f4f6 !important;
+}
+
+.contact-intro {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #4b5563;
+}
+
+html.dark-mode .contact-intro {
+    color: #bbb !important;
+}
+
+.contact-details p {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+}
+
+.contact-details a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.contact-details a:hover {
+    text-decoration: underline;
+}
+
+html.dark-mode .contact-details a {
+    color: #66aaff !important;
+}
+
+.contact-thanks {
+    margin-top: 2rem;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+html.dark-mode .contact-thanks {
+    color: #e0e0e0 !important;
+}

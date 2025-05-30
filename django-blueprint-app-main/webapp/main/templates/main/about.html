@@ -1,27 +1,41 @@
 {% extends 'main/layout/layout.html' %}
 
-{% block title%}O nas{% endblock %}
-<link rel="stylesheet" href="django-blueprint-app-main/webapp/main/static/main/css/main.css">
+{% block title %}O nas{% endblock %}
 
-{% block content%}
-    <div class="features">
-        <h1>O nas</h1>
-        <p>
-            Witamy w naszej wypożyczalni samochodów – miejscu, gdzie komfort jazdy spotyka się z niezawodnością i przystępną ceną. 
-            Od lat dostarczamy naszym klientom nowoczesne, bezpieczne i w pełni sprawne auta na każdą okazję – od krótkich miejskich przejażdżek, 
-            po długie, wakacyjne trasy.
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+
+<section class="about-section light-bg dark-mode-bg">
+    <div class="container about-container">
+
+        <h1 class="about-title">O nas</h1>
+
+        <p class="about-subtitle">
+            Twoja zaufana wypożyczalnia samochodów – komfortowo, bezpiecznie i bez komplikacji.
         </p>
-        <p>
-            Niezależnie od tego, czy potrzebujesz ekonomicznego samochodu na weekend, eleganckiego auta na spotkanie biznesowe, 
-            czy przestronnego SUV-a dla całej rodziny – u nas znajdziesz idealne rozwiązanie. 
-        </p>
-        <p>
-            Nasz zespół dba o to, by każda podróż była przyjemna i bezproblemowa. Rezerwacja zajmuje tylko kilka chwil, a formalności ograniczyliśmy do minimum.
-        </p>
-        <p>
-            Zaufaj doświadczeniu i ruszaj w drogę razem z nami!
-        </p>
-        
+
+        <div class="about-text">
+            <p>
+                Witamy w naszej wypożyczalni samochodów – miejscu, gdzie komfort jazdy spotyka się z niezawodnością i przystępną ceną. 
+                Od lat dostarczamy naszym klientom nowoczesne, bezpieczne i w pełni sprawne auta na każdą okazję – od krótkich miejskich przejażdżek po długie, wakacyjne trasy.
+            </p>
+
+            <p>
+                Niezależnie od tego, czy potrzebujesz ekonomicznego samochodu na weekend, eleganckiego auta na spotkanie biznesowe, 
+                czy przestronnego SUV-a dla całej rodziny – u nas znajdziesz idealne rozwiązanie.
+            </p>
+
+            <p>
+                Nasz zespół dba o to, by każda podróż była przyjemna i bezproblemowa. Rezerwacja zajmuje tylko kilka chwil, 
+                a formalności ograniczyliśmy do minimum.
+            </p>
+
+            <p class="about-highlight">
+                Zaufaj doświadczeniu i ruszaj w drogę razem z nami!
+            </p>
+        </div>
     </div>
-
+</section>
 {% endblock %}

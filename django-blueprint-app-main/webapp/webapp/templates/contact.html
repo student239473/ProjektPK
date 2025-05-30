@@ -1,17 +1,31 @@
 {% extends 'main/layout/layout.html' %}
 
-{% block title%}Add news{% endblock %}
+{% block title %}Kontakt{% endblock %}
 
-{% block content%}
-<br>
-   <h1>Witamy w zakładce kontakt</h1>
-   <br>
-   <p>Masz pytania? Jesteśmy do Twojej dyspozycji!
-    Skontaktuj się z nami w sprawie rezerwacji, dostępności pojazdów lub innych usług. Nasz zespół obsługi klienta odpowie na Twoją wiadomość tak szybko, jak to możliwe.</p>
-    <p>📧 E-mail: autorent@express.pl</p>
-    <p>☎️ Telefon: +48 123 456 789</p>
+{% block content %}
 
-<p>Dziękujemy za zaufanie i zapraszamy do kontaktu!</p>
+{% load static %}
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
 
+<section class="contact-section">
+    <div class="contact-container">
+
+        <h1 class="contact-title">Skontaktuj się z nami</h1>
+
+        <p class="contact-intro">
+            Masz pytania? Jesteśmy do Twojej dyspozycji!<br>
+            Skontaktuj się z nami w sprawie rezerwacji, dostępności pojazdów lub innych usług.
+            Nasz zespół obsługi klienta odpowie na Twoją wiadomość tak szybko, jak to możliwe.
+        </p>
+
+        <div class="contact-details">
+            <p>📧 <strong>E-mail:</strong> <a href="mailto:autorent@express.pl">autorent@express.pl</a></p>
+            <p>☎️ <strong>Telefon:</strong> <a href="tel:+48123456789">+48 123 456 789</a></p>
+        </div>
+
+        <p class="contact-thanks">Dziękujemy za zaufanie i zapraszamy do kontaktu!</p>
+
+    </div>
+</section>
 
 {% endblock %}
