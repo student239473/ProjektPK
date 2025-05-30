@@ -1,0 +1,49 @@
+{% extends 'main/layout/layout.html' %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow rounded-4" style="background: linear-gradient(135deg, #2c3e50, #4b6584); color: #f0f0f0;">
+        <div class="card-body text-center px-5 py-4">
+
+          {% if request.user.profile.avatar %}
+            <img src="{{ request.user.profile.avatar.url }}" alt="Avatar" 
+                 class="rounded-circle mb-4 border border-3 border-primary" 
+                 style="width:160px; height:160px; object-fit:cover; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          {% else %}
+            <div class="bg-primary rounded-circle mb-4 d-inline-flex align-items-center justify-content-center" 
+                 style="width:160px; height:160px; color:white; font-size:72px; font-weight:700; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+              {{ request.user.username|first|upper }}
+            </div>
+          {% endif %}
+
+          <h2 class="fw-bold mb-1 text-light">{{ request.user.get_full_name|default:request.user.username }}</h2>
+          <p class="text-light mb-4">@{{ request.user.username }}</p>
+
+          <ul class="list-group list-group-flush text-start mb-4" style="font-size: 1.1rem; color: #d1d8e0;">
+            <li class="list-group-item d-flex align-items-center border-0 px-0 mb-2" style="background: transparent;">
+              <i class="bi bi-envelope-fill me-3 text-info" style="font-size: 1.3rem;"></i>
+              <strong class="me-2">Email:</strong>
+              <span>{{ request.user.email }}</span>
+            </li>
+            <li class="list-group-item d-flex align-items-center border-0 px-0 mb-2" style="background: transparent;">
+              <i class="bi bi-telephone-fill me-3 text-success" style="font-size: 1.3rem;"></i>
+              <strong class="me-2">Telefon:</strong>
+              <span>{{ request.user.profile.phone_number|default:"Nie podano" }}</span>
+            </li>
+            <li class="list-group-item border-0 px-0" style="background: transparent;">
+              <strong>O mnie:</strong>
+              <p class="mb-0 mt-1" style="white-space: pre-line; color: #cbd5e1;">{{ request.user.profile.bio|default:"Brak informacji" }}</p>
+            </li>
+          </ul>
+
+          <a href="{% url 'profile_edit' %}" class="btn btn-primary btn-lg px-4 fw-semibold" style="border-radius: 50px;">
+            Edytuj profil
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

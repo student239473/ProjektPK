@@ -23,9 +23,10 @@ from django.conf.urls.static import static
 from webapp import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls), # default, part of django
+    path('admin/', admin.site.urls), 
     path('', include('main.urls')),
     path('news/', include('news.urls')), 
-    path('forum/', include('forum.urls')), #delegating authority to an internal application to forum.urls that is needed to be created
+    path('forum/', include('forum.urls')),
     path('contact/', views.contact, name='contact'),
+    
 ]

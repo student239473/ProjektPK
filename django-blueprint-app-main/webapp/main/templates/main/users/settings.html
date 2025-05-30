@@ -1,0 +1,334 @@
+{% extends 'main/layout/layout.html' %}
+
+{% block content %}
+
+<!-- Kontener przełącznika na górze, z prawej strony -->
+<div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 2rem;">
+  <label class="switch" style="user-select:none; font-weight: 600; font-size: 1rem; color: #198754; display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+    Tryb nocny
+    <input type="checkbox" id="nightModeToggle" />
+    <span class="slider round"></span>
+  </label>
+</div>
+
+<style>
+  /* Styl "toggle switch" */
+  .switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+  }
+
+  /* Slider - tło */
+  .slider {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    background-color: #ccc;
+    border-radius: 34px;
+    transition: background-color 0.3s;
+    margin-left: 8px;
+  }
+
+  /* Kółko */
+  .slider::before {
+    content: "";
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    left: 2px;
+    top: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+  }
+
+  /* Kolor i pozycja przy zaznaczeniu */
+  .switch input:checked + .slider {
+    background-color: #198754;
+  }
+
+  .switch input:checked + .slider::before {
+    transform: translateX(24px);
+  }
+
+  /* Stylowanie standardowe formularza i reszty */
+  input, textarea {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1.125rem;
+    border: 1px solid #ccc;
+    border-radius: 0.375rem;
+    box-sizing: border-box;
+    background-color: white;
+    color: #222;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  input:focus, textarea:focus {
+    border-color: #28a745;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+  }
+  .text-danger {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    color: #d9534f;
+  }
+  .card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    background-color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: #222;
+  }
+  .mb-3 {
+    margin-bottom: 1.5rem;
+  }
+  h4 {
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    color: #444;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+  button {
+    padding: 0.75rem 2rem;
+    font-size: 1.25rem;
+    border-radius: 0.5rem;
+    background-color: #198754;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #28a745;
+  }
+
+  /* --- Dark mode styles --- */
+
+  html.dark-mode {
+    background-color: #121212;
+    color: #ccc;
+  }
+  
+  html.dark-mode input,
+  html.dark-mode textarea {
+    background-color: #2a2a2a;
+    color: #ccc;
+    border-color: #555;
+  }
+
+  html.dark-mode input:focus,
+  html.dark-mode textarea:focus {
+    border-color: #81c784;
+    box-shadow: 0 0 0 0.2rem rgba(129, 199, 132, 0.5);
+  }
+
+  html.dark-mode .text-danger {
+    color: #f08080;
+  }
+
+  html.dark-mode .card {
+    background-color: #2a2a2a;
+    color: #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
+  }
+
+  html.dark-mode h4 {
+    border-color: #555;
+    color: #ddd;
+  }
+
+  html.dark-mode button {
+    background-color: #4caf50;
+  }
+  html.dark-mode button:hover {
+    background-color: #66bb6a;
+  }
+
+  /* --- Tabela z ciemnym stylem --- */
+
+  .dark-table {
+    background-color: #fff;
+    color: #222;
+    border-collapse: collapse;
+    width: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .dark-table th,
+  .dark-table td {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    text-align: left;
+  }
+
+  .dark-table thead {
+    background-color: #f8f9fa;
+  }
+
+  .dark-table tbody tr:nth-child(even) {
+    background-color: #f1f1f1;
+  }
+
+  .dark-table tbody tr:hover {
+    background-color: #e2e6ea;
+    cursor: pointer;
+  }
+
+  /* Dark mode - ciemnoszare tło i jasnoszary tekst */
+  html.dark-mode table.dark-table,
+  html.dark-mode .dark-table {
+    background-color: #2f2f2f !important;
+    color: #d0d0d0 !important;
+  }
+
+  html.dark-mode table.dark-table th,
+  html.dark-mode table.dark-table td,
+  html.dark-mode .dark-table th,
+  html.dark-mode .dark-table td {
+    border-color: #555 !important;
+    color: #d0d0d0 !important;
+    padding: 8px 12px;
+    text-align: left;
+    background-color: #3a3a3a !important;
+  }
+
+  html.dark-mode table.dark-table thead,
+  html.dark-mode .dark-table thead {
+    background-color: #454545 !important;
+    color: #e0e0e0 !important;
+  }
+
+  html.dark-mode table.dark-table tbody tr:nth-child(even),
+  html.dark-mode .dark-table tbody tr:nth-child(even) {
+    background-color: #383838 !important;
+  }
+
+  html.dark-mode table.dark-table tbody tr:hover,
+  html.dark-mode .dark-table tbody tr:hover {
+    background-color: #575757 !important;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('nightModeToggle');
+    if (!toggle) return;
+
+    // Synchronizacja checkboxa z localStorage
+    const darkModeEnabled = localStorage.getItem('darkMode') === 'enabled';
+
+    toggle.checked = darkModeEnabled;
+
+    // Dodaj klasę dark-mode na html, jeśli włączony
+    if(darkModeEnabled){
+      document.documentElement.classList.add('dark-mode');
+    }
+
+    toggle.addEventListener('change', () => {
+      if (toggle.checked) {
+        document.documentElement.classList.add('dark-mode');
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        document.documentElement.classList.remove('dark-mode');
+        localStorage.setItem('darkMode', 'disabled');
+      }
+    });
+  });
+</script>
+
+<div class="container py-5">
+  <h2 style="text-align:center; margin-bottom:3rem; color:#198754;">Edytuj ustawienia konta</h2>
+  <form method="POST" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+    
+    <div style="display:flex; gap:2rem; flex-wrap: wrap;">
+      <div style="flex:1; min-width:300px;">
+        <div class="card">
+          <h4>Dane osobowe</h4>
+
+          <div class="mb-3">
+            <label for="{{ u_form.first_name.id_for_label }}">{{ u_form.first_name.label }}</label>
+            {{ u_form.first_name }}
+            {% for error in u_form.first_name.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+          </div>
+
+          <div class="mb-3">
+            <label for="{{ u_form.last_name.id_for_label }}">{{ u_form.last_name.label }}</label>
+            {{ u_form.last_name }}
+            {% for error in u_form.last_name.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+          </div>
+
+          <div class="mb-3">
+            <label for="{{ u_form.email.id_for_label }}">{{ u_form.email.label }}</label>
+            {{ u_form.email }}
+            {% for error in u_form.email.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:1; min-width:300px;">
+        <div class="card">
+          <h4>Profil</h4>
+
+          <div class="mb-3">
+            <label for="{{ p_form.phone_number.id_for_label }}">{{ p_form.phone_number.label }}</label>
+            {{ p_form.phone_number }}
+            {% for error in p_form.phone_number.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+          </div>
+
+          <div class="mb-3">
+            <label for="{{ p_form.bio.id_for_label }}">{{ p_form.bio.label }}</label>
+            {{ p_form.bio }}
+            {% for error in p_form.bio.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+          </div>
+
+          <div class="mb-3">
+            <label for="{{ p_form.avatar.id_for_label }}">{{ p_form.avatar.label }}</label>
+            {{ p_form.avatar }}
+            {% for error in p_form.avatar.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+            {% if request.user.profile.avatar %}
+              <img src="{{ request.user.profile.avatar.url }}" alt="Aktualne zdjęcie" style="margin-top:1rem; border-radius:8px; max-width:150px;">
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr style="margin:3rem 0; border-color:#ccc;">
+
+    <div style="text-align:center; margin-bottom:2rem;">
+      <h5 style="font-weight:bold;">Zmiana hasła</h5>
+      <p>Hasło zmieniasz na osobnej stronie <a href="{% url 'password_change' %}" style="color:#198754; text-decoration:underline;">tutaj</a>.</p>
+    </div>
+
+    <div style="text-align:center;">
+      <button type="submit">Zapisz zmiany</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

@@ -3,17 +3,29 @@
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block content %}
-    <div class="d-flex justify-content-between align-items-center w-100">
-        <h1>{{ article.title }}</h1>
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="display-4">{{ article.title }}</h1>
         <div>
             {% if user.is_staff %}
-                <a href="/news/{{ article.id }}/update" class="btn btn-info">Update</a>
-                <a href="/news/{{ article.id }}/delete" class="btn btn-danger">Delete</a>
+                <a href="/news/{{ article.id }}/update" class="btn btn-info me-2">Edytuj</a>
+                <a href="/news/{{ article.id }}/delete" class="btn btn-danger">Usuń</a>
             {% endif %}
         </div>
     </div>
-    <div class="d-flex flex-column gap-4">
-        <p>Opublikowany: {{ article.published_at }}</p>
-        <p>{{ article.body }}</p>
+
+    <p class="text-muted">
+        <i class="bi bi-calendar3 me-1"></i> Opublikowano: {{ article.published_at|date:"j E Y, H:i" }}
+    </p>
+
+    <hr>
+
+    <div class="mb-4">
+        <p>{{ article.body|linebreaks }}</p>
     </div>
+
+<a href="{% url 'news_home' %}" class="btn btn-secondary">
+    <i class="bi bi-arrow-left"></i> Wróć do aktualności
+</a>
+</div>
 {% endblock %}

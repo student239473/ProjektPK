@@ -29,12 +29,18 @@
       {% if user.is_authenticated %}
         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" 
            data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+          
+          {% if user.profile.avatar %}
+            <img src="{{ user.profile.avatar.url }}" alt="Avatar użytkownika" width="32" height="32" class="rounded-circle me-2" style="object-fit: cover;">
+          {% else %}
+            <img src="{% static 'default_avatar.png' %}" alt="" width="32" height="32" class="rounded-circle me-2">
+          {% endif %}
+          
           <strong>{{ user.username }}</strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-          <li><a class="dropdown-item" href="#">Profil</a></li>
-          <li><a class="dropdown-item" href="#">Ustawienia</a></li>
+          <li><a class="dropdown-item" href="{% url 'profile' %}">Profil</a></li>
+          <li><a class="dropdown-item" href="{% url 'profile_edit' %}">Ustawienia</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="{% url 'logout_user' %}">Wyloguj się</a></li>
         </ul>

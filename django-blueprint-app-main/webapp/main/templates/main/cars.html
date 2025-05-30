@@ -4,6 +4,7 @@
 {% block title %}Auta{% endblock %}
 
 {% block content %}
+
 <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
 
 <h1>Auta</h1>
@@ -16,7 +17,7 @@
     </form>
 {% endif %}
 
-<table class="table">
+<table class="table dark-table">
     <thead>
         <tr>
             <th>Auto</th>
@@ -65,4 +66,5 @@
         {% endfor %}
     </tbody>
 </table>
+
 {% endblock %}

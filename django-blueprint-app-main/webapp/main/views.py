@@ -6,7 +6,7 @@ from .models import Car
 from .forms import CarForm, RegisterForm
 from datetime import datetime
 from django.http import HttpResponse
-
+from .forms import CarForm, RegisterForm, UserUpdateForm, ProfileUpdateForm
 
 def index(request):
     return render(request, 'main/index.html')
@@ -110,7 +110,7 @@ def register(request):
             user.set_password(form.cleaned_data['password1'])
 
             # If user checks 'is_admin', grant admin rights
-            if form.cleaned_data['is_admin']:
+            if form.cleaned_data.get('is_admin'):
                 user.is_staff = True  # Grant admin privileges
 
             user.save()
@@ -148,3 +148,33 @@ def toggle_reservation(request, car_id):
     car.is_reserved = not car.is_reserved
     car.save()
     return redirect('cars')
+
+@login_required
+def profile_view(request):
+    return render(request, 'main/users/profile.html')
+
+@login_required
+def profile_edit(request):
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            return redirect('profile')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    return render(request, 'main/users/settings.html', {
+        'u_form': u_form,
+        'p_form': p_form
+    })
+
+def toggle_night_mode(request):
+    dark_mode = request.session.get('dark_mode', False)
+    request.session['dark_mode'] = not dark_mode
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+def settings_view(request):
+    return render(request, 'main/settings.html')
