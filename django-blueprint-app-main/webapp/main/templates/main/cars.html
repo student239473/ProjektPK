@@ -1,42 +1,70 @@
 {% extends 'main/layout/layout.html' %}
 {% load static %}
 
-{% block title %}O nas{% endblock %}
+{% block title %}Auta{% endblock %}
 
 {% block content %}
+
 <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
 
-<section class="about-section" style="background-color: #1f2937; padding: 4rem 1rem; color: #e5e7eb;">
-    <div class="container" style="max-width: 800px; margin: 0 auto;">
+<h1>Auta</h1>
 
-        <h1 style="font-size: 2.5rem; font-weight: bold; text-align: center; margin-bottom: 1rem; color: #f9fafb;">
-            O nas
-        </h1>
+{% if user.is_staff %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Dodaj auto</button>
+    </form>
+{% endif %}
 
-        <p style="text-align: center; font-size: 1.2rem; color: #d1d5db; margin-bottom: 2rem;">
-            Twoja zaufana wypożyczalnia samochodów – komfortowo, bezpiecznie i bez komplikacji.
-        </p>
+<table class="table dark-table">
+    <thead>
+        <tr>
+            <th>Auto</th>
+            <th>Rok</th>
+            <th>Kolor</th>
+            <th>Cena</th>
+            <th>Zdjęcie</th>
+            <th>Status</th>
+            {% if user.is_staff %}
+                <th>Akcje</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for car in cars %}
+            <tr>
+                <td>{{ car.car }}</td>
+                <td>{{ car.year }}</td>
+                <td>{{ car.color|capfirst }}</td>
+                <td>{{ car.price }}</td>
+                <td>
+                    {% if car.image %}
+                        <img src="{{ car.image.url }}" width="100" />
+                    {% else %}
+                        No image
+                    {% endif %}
+                </td>
+                <td>
+                    {% if user.is_staff %}
+                        <form method="POST" action="{% url 'toggle_reservation' car.id %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" style="border: none; background: none;">
+                                <span class="status-indicator {% if car.is_reserved %}status-reserved{% else %}status-free{% endif %}"></span>
+                            </button>
+                        </form>
+                    {% else %}
+                        <span class="status-indicator {% if car.is_reserved %}status-reserved{% else %}status-free{% endif %}"></span>
+                    {% endif %}
+                </td>
+                {% if user.is_staff %}
+                    <td>
+                        <a href="{% url 'delete_car' car.id %}" class="btn btn-danger">Usuń</a>
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
-        <div style="font-size: 1.1rem; line-height: 1.8; color: #e5e7eb;">
-            <p style="margin-bottom: 1.2rem;">
-                Witamy w naszej wypożyczalni samochodów – miejscu, gdzie komfort jazdy spotyka się z niezawodnością i przystępną ceną. 
-                Od lat dostarczamy naszym klientom nowoczesne, bezpieczne i w pełni sprawne auta na każdą okazję – od krótkich miejskich przejażdżek po długie, wakacyjne trasy.
-            </p>
-
-            <p style="margin-bottom: 1.2rem;">
-                Niezależnie od tego, czy potrzebujesz ekonomicznego samochodu na weekend, eleganckiego auta na spotkanie biznesowe, 
-                czy przestronnego SUV-a dla całej rodziny – u nas znajdziesz idealne rozwiązanie.
-            </p>
-
-            <p style="margin-bottom: 1.2rem;">
-                Nasz zespół dba o to, by każda podróż była przyjemna i bezproblemowa. Rezerwacja zajmuje tylko kilka chwil, 
-                a formalności ograniczyliśmy do minimum.
-            </p>
-
-            <p style="font-weight: 600; color: #f3f4f6;">
-                Zaufaj doświadczeniu i ruszaj w drogę razem z nami!
-            </p>
-        </div>
-    </div>
-</section>
 {% endblock %}
