@@ -26,3 +26,10 @@ class Post(models.Model):
 
     def __str__(self):
         return f"Post by {self.author} in {self.thread}"
+    
+
+
+
+    #Jak chcecie stworzyc sobie kategorie to tu jest komenda bo nwm jak zrobic to zeby w panelu admina sie wyswietlalo
+    #from forum.models import Category
+    #Category.objects.create(name="jakas tam nazwa kategorii", description="a tu opis")
