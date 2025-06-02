@@ -1,0 +1,31 @@
+{% extends 'main/layout/layout.html' %}
+{% block content %}
+
+<h2 class="mb-3">Wątki w kategorii: {{ category.name }}</h2>
+
+<a href="{% url 'forum:create_thread' category.id %}" class="btn btn-success mb-3">+ Nowy wątek</a>
+
+<ul class="list-group">
+  {% for thread in threads %}
+    <li class="list-group-item d-flex align-items-center">
+      
+      {% if thread.author.profile and thread.author.profile.avatar %}
+        <img src="{{ thread.author.profile.avatar.url }}" 
+             alt="avatar" class="rounded-circle me-3" 
+             style="width:40px; height:40px; object-fit:cover;">
+      {% endif %}
+
+      <div>
+        <a href="{% url 'forum:post_list' thread.id %}" class="fw-bold">{{ thread.title }}</a><br>
+        <small class="text-muted">
+          {{ thread.author.username }} • {{ thread.created_at|date:"d.m.Y H:i" }}
+        </small>
+      </div>
+    </li>
+  {% empty %}
+    <li class="list-group-item">Brak wątków.</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
+

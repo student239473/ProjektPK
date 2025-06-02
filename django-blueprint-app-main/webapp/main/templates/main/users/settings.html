@@ -2,7 +2,6 @@
 
 {% block content %}
 
-<!-- Kontener przełącznika na górze, z prawej strony -->
 <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 2rem;">
   <label class="switch" style="user-select:none; font-weight: 600; font-size: 1rem; color: #198754; display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
     Tryb nocny
@@ -12,7 +11,6 @@
 </div>
 
 <style>
-  /* Styl "toggle switch" */
   .switch {
     position: relative;
     display: inline-flex;
@@ -26,7 +24,6 @@
     position: absolute;
   }
 
-  /* Slider - tło */
   .slider {
     position: relative;
     width: 50px;
@@ -37,7 +34,6 @@
     margin-left: 8px;
   }
 
-  /* Kółko */
   .slider::before {
     content: "";
     position: absolute;
@@ -50,7 +46,6 @@
     transition: transform 0.3s;
   }
 
-  /* Kolor i pozycja przy zaznaczeniu */
   .switch input:checked + .slider {
     background-color: #198754;
   }
@@ -59,7 +54,6 @@
     transform: translateX(24px);
   }
 
-  /* Stylowanie standardowe formularza i reszty */
   input, textarea {
     width: 100%;
     padding: 0.5rem 0.75rem;
@@ -113,7 +107,6 @@
     background-color: #28a745;
   }
 
-  /* --- Dark mode styles --- */
 
   html.dark-mode {
     background-color: #121212;
@@ -155,7 +148,6 @@
     background-color: #66bb6a;
   }
 
-  /* --- Tabela z ciemnym stylem --- */
 
   .dark-table {
     background-color: #fff;
@@ -185,7 +177,6 @@
     cursor: pointer;
   }
 
-  /* Dark mode - ciemnoszare tło i jasnoszary tekst */
   html.dark-mode table.dark-table,
   html.dark-mode .dark-table {
     background-color: #2f2f2f !important;
@@ -226,12 +217,11 @@
     const toggle = document.getElementById('nightModeToggle');
     if (!toggle) return;
 
-    // Synchronizacja checkboxa z localStorage
     const darkModeEnabled = localStorage.getItem('darkMode') === 'enabled';
 
     toggle.checked = darkModeEnabled;
 
-    // Dodaj klasę dark-mode na html, jeśli włączony
+
     if(darkModeEnabled){
       document.documentElement.classList.add('dark-mode');
     }

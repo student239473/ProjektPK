@@ -1,0 +1,9 @@
+{% extends 'main/layout/layout.html' %}
+{% block content %}
+<h2>Odpowiedz w wątku: {{ thread.title }}</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">Dodaj odpowiedź</button>
+</form>
+{% endblock %}

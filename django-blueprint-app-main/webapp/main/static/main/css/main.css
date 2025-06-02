@@ -407,3 +407,22 @@ html.dark-mode .contact-details a {
 html.dark-mode .contact-thanks {
     color: #e0e0e0 !important;
 }
+
+html.dark-mode .list-group {
+    background-color: #2f2f2f;
+    border: 1px solid #555;
+}
+
+html.dark-mode .list-group-item {
+    background-color: #3a3a3a;
+    color: #d0d0d0;
+    border: 1px solid #555;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark-mode .list-group-item:hover,
+html.dark-mode .list-group-item.active {
+    background-color: #575757;
+    color: #fff;
+    border-color: #777;
+}

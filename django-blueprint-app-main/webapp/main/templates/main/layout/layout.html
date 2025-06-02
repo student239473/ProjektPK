@@ -27,6 +27,15 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100" style="margin:0; padding:0; width:100%; overflow-x:hidden;">
+    {% if messages %}
+  <div class="container mt-2">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
 
     {% include 'main/layout/bar.html' %}
 

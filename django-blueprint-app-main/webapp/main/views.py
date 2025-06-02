@@ -109,17 +109,14 @@ def register(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password1'])
 
-            # If user checks 'is_admin', grant admin rights
             if form.cleaned_data.get('is_admin'):
-                user.is_staff = True  # Grant admin privileges
+                user.is_staff = True  
 
             user.save()
 
-            # Log in the user
             login(request, user)
             return redirect('index')
         else:
-            # Displaying specific form errors
             messages.error(request, 'Formularz jest nieprawidłowy.')
             for field in form:
                 for error in field.errors:

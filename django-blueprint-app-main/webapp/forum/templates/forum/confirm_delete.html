@@ -1,0 +1,11 @@
+{% extends 'main/layout/layout.html' %}
+{% block content %}
+<h3>Potwierdź usunięcie {{ type }}</h3>
+<p>Czy na pewno chcesz usunąć {{ type }}: <strong>{{ object }}</strong>?</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Tak, usuń</button>
+  <a href="javascript:history.back()" class="btn btn-secondary">Anuluj</a>
+</form>
+{% endblock %}
